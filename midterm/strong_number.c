@@ -1,41 +1,34 @@
 #include <stdio.h>
 
-int fact(int n) {
-    if(n==0) return 1;
-    return n*fact(n-1);
-}
+int main()
+{
+    int i, originalNum, num, lastDigit, sum;
+    long fact;
+    printf("Enter any number to check Strong number: ");
+    scanf("%d", &num);
+    originalNum = num;
 
-int main() {
+    sum = 0;
+    while(num > 0)
+    {
+        lastDigit = num % 10;
+        fact = 1;
+        for(i=1; i<=lastDigit; i++)
+        {
+            fact = fact * i;
+        }
+        sum = sum + fact;
 
-    int n, result = 0;
-    printf("Enter a number:\n");
-    scanf("%d", &n);
-
-    int n2 = n, count = 0, n3 = n;
-
-    while(n2!=0) {
-        ++count;
-        n2/=10;
+        num = num / 10;
     }
-
-    int a[count];
-
-    for(int i=0; i<count; ++i) {
-        a[i] = n3%10;
-        n3/=10;
+    if(sum == originalNum)
+    {
+        printf("%d is STRONG NUMBER", originalNum);
     }
-
-    for(int i=0; i<count; ++i) {
-        a[i] = fact(a[i]);
+    else
+    {
+        printf("%d is NOT STRONG NUMBER", originalNum);
     }
-
-    for(int i=0; i<count; ++i) {
-        result += a[i];
-    }
-
-    if(result==n) printf("Strong\n", n);
-    else printf("Not Strong\n", n);
 
     return 0;
-
 }
